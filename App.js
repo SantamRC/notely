@@ -1,14 +1,26 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import * as React from 'react';
+import {Appbar} from 'react-native-paper';
+import {Headline} from 'react-native-paper';
+import {StyleSheet} from 'react-native';
 
-const App = () => {
-  return (
-    <View>
-      <Text>App</Text>
-    </View>
-  );
-};
+const MyComponent = () => (
+  <Appbar style={styles.navbar}>
+    <Headline style={styles.headline}>Notely</Headline>
+  </Appbar>
+);
 
-export default App;
+export default MyComponent;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  navbar: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    backgroundColor: 'white',
+  },
+  headline: {
+    color: 'black',
+    marginLeft: 10,
+  },
+});
