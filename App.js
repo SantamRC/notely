@@ -1,26 +1,21 @@
 import * as React from 'react';
-import {Appbar} from 'react-native-paper';
 import {Headline} from 'react-native-paper';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import Mynotes from './Components/Mynotes';
 
 const MyComponent = () => (
-  <Appbar style={styles.navbar}>
+  <View>
     <Headline style={styles.headline}>Notely</Headline>
-  </Appbar>
+    <Mynotes />
+  </View>
 );
 
 export default MyComponent;
 
 const styles = StyleSheet.create({
-  navbar: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    backgroundColor: 'white',
-  },
   headline: {
     color: 'black',
-    marginLeft: 10,
+    marginLeft: '5%',
+    padding: 10,
   },
 });
