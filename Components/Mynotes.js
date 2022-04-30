@@ -33,12 +33,13 @@ const Mynotes = () => {
         value={searchQuery}
         style={styles.Searchbar}
       />
-      <FAB />
+
       <View>
         {data.map(item => {
           return <Cards key={item.id} title={item.title} />;
         })}
       </View>
+      <FAB />
     </View>
   );
 };

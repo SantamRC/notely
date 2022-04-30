@@ -1,54 +1,62 @@
-import React, {useState} from 'react';
-import {FAB, Portal, Provider} from 'react-native-paper';
-import Reminder from './Reminder';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Animated,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import React from 'react';
+import Icon from 'react-native-vector-icons/AntDesign';
+import FontIcon from 'react-native-vector-icons/FontAwesome';
 
-const Fab = () => {
-  const [state, setState] = useState({open: false});
-  const [reminder, openReminder] = useState(false);
-
-  const onStateChange = ({open}) => setState({open});
-
-  const {open} = state;
+const FAB = () => {
+  const animation = new Animated.Value(0);
 
   return (
-    <Provider>
-      <Portal>
-        <FAB.Group
-          open={open}
-          icon={open ? 'calendar-today' : 'plus'}
-          actions={[
-            {icon: 'plus', onPress: () => console.log('Pressed add')},
-            {
-              icon: 'star',
-              label: 'Star',
-              onPress: () => console.log('Pressed star'),
-            },
-            {
-              icon: 'email',
-              label: 'Email',
-              onPress: () => console.log('Pressed email'),
-            },
-            {
-              icon: 'bell',
-              label: 'Reminder',
-              onPress: () => {
-                console.log('Pressed notifications');
-                openReminder(!reminder);
-              },
-              small: false,
-            },
-          ]}
-          onStateChange={onStateChange}
-          onPress={() => {
-            if (open) {
-              // do something if the speed dial is open
-            }
-          }}
-        />
-        <Reminder open={reminder} setOpen={openReminder} />
-      </Portal>
-    </Provider>
+    <View style={styles.fab}>
+      <TouchableWithoutFeedback>
+        <Animated.View style={styles.icon}>
+          <FontIcon name="pencil" size={40} color="blue" />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback>
+        <Animated.View style={styles.icon}>
+          <FontIcon name="file-image-o" size={40} color="blue" />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback>
+        <Animated.View style={styles.icon}>
+          <FontIcon name="file-audio-o" size={40} color="blue" />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback>
+        <Animated.View style={styles.icon}>
+          <FontIcon name="calendar" size={40} color="blue" />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback>
+        <Animated.View style={styles.icon}>
+          <Icon name="pluscircle" size={40} color="blue" />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+    </View>
   );
 };
 
-export default Fab;
+export default FAB;
+
+const styles = StyleSheet.create({
+  fab: {
+    position: 'absolute',
+    bottom: -100,
+    right: 10,
+  },
+  icon: {
+    shadowRadius: 10,
+    shadowColor: 'black',
+    shadowOpacity: 0.5,
+    shadowOffset: {
+      height: 10,
+    },
+  },
+});
