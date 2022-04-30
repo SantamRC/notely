@@ -35,7 +35,7 @@ const Reminder = props => {
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Reminder</Text>
+            <Text style={styles.modalText}>Image Note</Text>
             <TextInput
               style={{height: '7%', width: '90%', flex: 1}}
               mode="outlined"
@@ -43,17 +43,9 @@ const Reminder = props => {
               value={title}
               onChangeText={title => setTitle(title)}
             />
-            <TextInput
-              style={{
-                height: '7%',
-                width: '90%',
-                flex: 4,
-                marginTop: '8%',
-                marginBottom: '8%',
-              }}
-              mode="outlined"
-              label="Text"
-            />
+            <View style={{flex: 7}}>
+                
+            </View>
             <View style={{flex: 1, flexDirection: 'row'}}>
               <Pressable
                 style={[styles.button, styles.buttonModal, {marginRight: '2%'}]}

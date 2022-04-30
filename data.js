@@ -11,12 +11,12 @@ const data = [
   },
   {
     type: 'reminder',
-    title: 'SantamRC',
+    title: 'Payel',
     body: 'lorem ipsum',
   },
   {
     type: 'reminder',
-    title: 'SantamRC',
+    title: 'Tuhin',
     body: 'lorem ipsum',
   },
   

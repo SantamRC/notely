@@ -8,18 +8,16 @@ import data from '../data';
 
 const Mynotes = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
-  const [reminder, setReminder] = useState([]);
+  const [notes, setNotes] = useState([]);
   const onChangeSearch = query => setSearchQuery(query);
 
   useEffect(() => {
     async function getValues() {
       try {
-        const res = await AsyncStorage.getItem('reminder');
-        const array = res.substring(1, res.length - 1).split(',');
-        console.log(array);
-        setReminder(array);
-      } catch (err) {
-        console.log(err);
+        var items = await AsyncStorage.getItem('notes');
+        setNotes(items.split(';'));
+      } catch (e) {
+        console.log(e);
       }
     }
     getValues();
@@ -33,10 +31,10 @@ const Mynotes = () => {
         value={searchQuery}
         style={styles.Searchbar}
       />
-
       <View>
-        {data.map(item => {
-          return <Cards key={item.id} title={item.title} />;
+        {notes.map(item => {
+          var title = JSON.parse(item).title;
+          return <Cards key={title} title={title} />;
         })}
       </View>
       <FAB />
