@@ -1,8 +1,10 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {FAB, Portal, Provider} from 'react-native-paper';
+import Reminder from './Reminder';
 
 const Fab = () => {
-  const [state, setState] = React.useState({open: false});
+  const [state, setState] = useState({open: false});
+  const [reminder, openReminder] = useState(false);
 
   const onStateChange = ({open}) => setState({open});
 
@@ -28,8 +30,11 @@ const Fab = () => {
             },
             {
               icon: 'bell',
-              label: 'Remind',
-              onPress: () => console.log('Pressed notifications'),
+              label: 'Reminder',
+              onPress: () => {
+                console.log('Pressed notifications');
+                openReminder(!reminder);
+              },
               small: false,
             },
           ]}
@@ -40,6 +45,7 @@ const Fab = () => {
             }
           }}
         />
+        <Reminder open={reminder} setOpen={openReminder} />
       </Portal>
     </Provider>
   );

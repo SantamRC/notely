@@ -1,11 +1,29 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {StyleSheet, View, FlatList} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {Searchbar} from 'react-native-paper';
 import FAB from './FAB';
+import Cards from './Cards';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import data from '../data';
 
 const Mynotes = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
+  const [reminder, setReminder] = useState([]);
   const onChangeSearch = query => setSearchQuery(query);
+
+  useEffect(() => {
+    async function getValues() {
+      try {
+        const res = await AsyncStorage.getItem('reminder');
+        const array = res.substring(1, res.length - 1).split(',');
+        console.log(array);
+        setReminder(array);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getValues();
+  }, []);
 
   return (
     <View>
@@ -16,6 +34,11 @@ const Mynotes = () => {
         style={styles.Searchbar}
       />
       <FAB />
+      <View>
+        {data.map(item => {
+          return <Cards key={item.id} title={item.title} />;
+        })}
+      </View>
     </View>
   );
 };

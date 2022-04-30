@@ -1,25 +1,23 @@
 import * as React from 'react';
+import {StyleSheet} from 'react-native';
 import {Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />;
 
-const MyComponent = () => (
-  <Card>
-    <Card.Title
-      title="Card Title"
-      subtitle="Card Subtitle"
-      left={LeftContent}
-    />
+const Cards = props => (
+  <Card style={styles.card}>
+    <Card.Title title={props.title} />
     <Card.Content>
-      <Title>Card title</Title>
       <Paragraph>Card content</Paragraph>
     </Card.Content>
-    <Card.Cover source={{uri: 'https://picsum.photos/700'}} />
-    <Card.Actions>
-      <Button>Cancel</Button>
-      <Button>Ok</Button>
-    </Card.Actions>
   </Card>
 );
 
-export default MyComponent;
+export default Cards;
+
+const styles = StyleSheet.create({
+  card: {
+    marginTop: '5%',
+    marginBottom: '5%',
+  },
+});
