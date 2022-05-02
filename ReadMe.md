@@ -4,9 +4,12 @@ A React Native App for taking notes
 
 ## Tech Stack
 
-React Native 
-React Native Paper
-React Native Vector Icons
+<ul>
+<li>React Native</li>
+<li>React Native Paper</li>
+<li>React Native Vector Icons</li>
+</ul>
+
 
 ## Implementation
 
