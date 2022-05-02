@@ -1,10 +1,20 @@
-import {StyleSheet, Text, View, Modal, Pressable, Alert} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Modal,
+  Pressable,
+  Alert,
+  Image,
+} from 'react-native';
 import React, {useState} from 'react';
-import {TextInput} from 'react-native-paper';
+import {TextInput, Button} from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const Reminder = props => {
   const [title, setTitle] = useState('');
+  const [uri, setUri] = useState('');
 
   const storeData = async value => {
     try {
@@ -43,8 +53,18 @@ const Reminder = props => {
               value={title}
               onChangeText={title => setTitle(title)}
             />
-            <View style={{flex: 7}}>
-                
+            <View style={{flex: 7, justifyContent: 'flex-end'}}>
+              {uri != '' && <Image source={{uri: uri}} />}
+              <Button
+                icon="image"
+                mode="contained"
+                onPress={() =>
+                  launchImageLibrary({mediaType: 'photo'}, response =>
+                    console.log(response.assets[0].uri),
+                  )
+                }>
+                Pick Image
+              </Button>
             </View>
             <View style={{flex: 1, flexDirection: 'row'}}>
               <Pressable
